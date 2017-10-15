@@ -11,7 +11,7 @@ class CategoriesList extends Component {
 		const { categories } = this.props.categories
 
 		return (
-			<div className='jumbotron'>
+			<div className='jumbotron category-list'>
 				<h1>Categories</h1>
 				{ categories !== undefined && (
 					<ul className="list-group">

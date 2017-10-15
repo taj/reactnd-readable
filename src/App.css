@@ -1,0 +1,8 @@
+.posts-list {
+    position: relative;
+}
+.posts-list .btn-posts-order {
+    position: absolute;
+    top: 4rem;
+    right: 2rem;
+}
