@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CategoriesList from './CategoriesList'
+import PostsList from './PostsList'
 import '../App.css';
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
 
 				<div className="container">
 					<CategoriesList />
+					<PostsList />
 				</div>
 			</div>
 		);

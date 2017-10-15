@@ -8,8 +8,8 @@ class CategoriesList extends Component {
 	}
 
 	render() {
-		const { categories } = this.props
-		console.log(categories)
+		const { categories } = this.props.categories
+
 		return (
 			<div className='jumbotron'>
 				<h1>Categories</h1>
