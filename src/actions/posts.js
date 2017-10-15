@@ -2,9 +2,9 @@ import * as ReadableAPI from '../utils/api';
 
 export const GET_POSTS = 'GET_POSTS'
 
-export const fetchPosts = () => dispatch => (
+export const fetchPosts = (category) => dispatch => (
 	ReadableAPI
-		.fetchPosts()
+		.fetchPosts(category)
 		.then(res => dispatch(getPosts(res)))
 )
 

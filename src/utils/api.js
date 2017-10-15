@@ -3,7 +3,9 @@ export function fetchCategories() {
 			.then((res) => res.json())
 }
 
-export function fetchPosts() {
-	return fetch ('http://localhost:3001/posts', { headers: { 'Authorization': 'whatever-you-want' }})
+export function fetchPosts(category) {
+	const url = category ? `http://localhost:3001/${category}/posts` : `http://localhost:3001/posts`
+
+	return fetch (url, { headers: { 'Authorization': 'whatever-you-want' }})
 			.then((res) => res.json())
 }

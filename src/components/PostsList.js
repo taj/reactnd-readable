@@ -12,7 +12,10 @@ class PostsList extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchPosts()
+		const filter = this.props.match !== undefined ? (
+			this.props.match.params.category || false
+		) : false
+		this.props.fetchPosts(filter)
 	}
 
 	sortPosts = (posts, sort) => {

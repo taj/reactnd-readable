@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import { connect} from 'react-redux'
 import { fetchCategories } from '../actions/categories'
 
@@ -16,7 +17,12 @@ class CategoriesList extends Component {
 				{ categories !== undefined && (
 					<ul className="list-group">
 					{categories.map( category => (
-						<li key={category.path} className="list-group-item">{category.name}</li>
+						<li key={category.path} className="list-group-item">
+						<Link
+							className="nav-link"
+							to={`/${category.path}`}
+							>{category.name}</Link>
+						</li>
 					))}
 					</ul>
 				)}
