@@ -10,7 +10,7 @@ class Vote extends Component {
 	}
 
 	handleVote = (option) => {
-		this.props.onOrderChange(option)
+		this.props.onPostVote(option)
 	}
 
 	render() {

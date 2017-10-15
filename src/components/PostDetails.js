@@ -14,13 +14,12 @@ class PostDetails extends Component {
 
 		this.props.fetchPost(postId)
 
-		this.onOrderChange = this.onOrderChange.bind(this)
+		this.onPostVote = this.onPostVote.bind(this)
 	}
 
-	onOrderChange (option) {
+	onPostVote (option) {
 		this.props.postVote(this.props.post.post.id, option)
 			.then ( () => this.props.fetchPost(this.props.post.post.id))
-		
 	}
 
 	render() {
@@ -34,7 +33,7 @@ class PostDetails extends Component {
 						<h6 className="card-subtitle text-muted">
 							{post.voteScore} points by {post.author} | {readableDate(post.timestamp)}
 						</h6>
-						<Vote onOrderChange={this.onOrderChange}/>
+						<Vote onPostVote={this.onPostVote}/>
 						<p className="card-text">
 							{post.body}
 						</p>
