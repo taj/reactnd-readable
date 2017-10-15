@@ -1,8 +1,8 @@
 import {
 	GET_CATEGORIES
-} from '../actions'
+} from '../actions/categories'
 
-function categories ( state = {}, action ) {
+const categories = ( state = {}, action ) => {
 	const { categories } = action
 	switch (action.type) {
 		case GET_CATEGORIES:
@@ -11,7 +11,7 @@ function categories ( state = {}, action ) {
 				categories
 			}
 		default:
-			return state;
+			return state
 	}
 }
 

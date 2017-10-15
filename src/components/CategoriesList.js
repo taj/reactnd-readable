@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect} from 'react-redux'
-import { fetchCategories } from '../actions'
+import { fetchCategories } from '../actions/categories'
 
 class CategoriesList extends Component {
 	componentDidMount() {
