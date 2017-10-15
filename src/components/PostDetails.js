@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CommentsList from './CommentsList'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchPost } from '../actions/post'
@@ -18,7 +19,7 @@ class PostDetails extends Component {
 		return (
 			<div className='jumbotron post-details'>
 				{post && (
-					<div className='jumbotron post-details'>
+					<div>
 						<h4 className="card-title">{post.title}</h4>
 						<h6 className="card-subtitle text-muted">
 							{post.voteScore} points by {post.author} | {readableDate(post.timestamp)}
@@ -27,8 +28,10 @@ class PostDetails extends Component {
 							{post.body}
 						</p>
 						<Link to={`/${post.category}`} className="card-link">{post.category}</Link>
+
+						<CommentsList {...this.props}/>
 					</div>
-					)}
+				)}
 			</div>
 		)
 	}

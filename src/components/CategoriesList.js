@@ -18,9 +18,9 @@ class CategoriesList extends Component {
 					<ul className="list-group">
 					{categories.map( category => (
 						<li key={category.path} className="list-group-item">
-						<Link
-							className="nav-link"
-							to={`/${category.path}`}
+							<Link
+								className="nav-link"
+								to={`/${category.path}`}
 							>{category.name}</Link>
 						</li>
 					))}

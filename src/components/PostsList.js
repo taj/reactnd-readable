@@ -24,13 +24,9 @@ class PostsList extends Component {
 
 		switch (sort) {
 			case 'date':
-				return sort.sort === 'asc' ?
-					posts.sort((a, b) => a.timestamp > b.timestamp) :
-					posts.sort((a, b) => a.timestamp < b.timestamp)
+				return posts.sort((a, b) => a.timestamp < b.timestamp)
 			case 'score':
-				return sort.sort === 'asc' ?
-					posts.sort((a, b) => a.voteScore > b.voteScore) :
-					posts.sort((a, b) => a.voteScore < b.voteScore)
+				return posts.sort((a, b) => a.voteScore < b.voteScore)
 			default:
 				return posts
 		}
