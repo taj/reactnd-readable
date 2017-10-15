@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import CategoriesList from './CategoriesList'
 import PostsList from './PostsList'
+import PostDetails from './PostDetails'
 import '../App.css';
 
 class App extends Component {
@@ -28,6 +29,12 @@ class App extends Component {
 					<Route exact path="/:category" render={(props) => (
 						<div className="container">
 							<PostsList {...props}/>
+						</div>
+					)} />
+
+					<Route exact path="/:category/:postId" render={(props) => (
+						<div className="container">
+							<PostDetails {...props}/>
 						</div>
 					)} />
 				</div>

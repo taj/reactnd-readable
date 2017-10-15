@@ -9,3 +9,8 @@ export function fetchPosts(category) {
 	return fetch (url, { headers: { 'Authorization': 'whatever-you-want' }})
 			.then((res) => res.json())
 }
+
+export function fetchPost(postId) {
+	return fetch (`http://localhost:3001/posts/${postId}`, { headers: { 'Authorization': 'whatever-you-want' }})
+			.then((res) => res.json())
+}
