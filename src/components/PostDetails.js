@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import CommentsList from './CommentsList'
+import Vote from './Vote'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { fetchPost } from '../actions/post'
+import { fetchPost, postVote } from '../actions/post'
 import { readableDate } from '../utils/helpers'
 
 class PostDetails extends Component {
@@ -12,7 +13,16 @@ class PostDetails extends Component {
 		) : false
 
 		this.props.fetchPost(postId)
+
+		this.onOrderChange = this.onOrderChange.bind(this)
 	}
+
+	onOrderChange (option) {
+		this.props.postVote(this.props.post.post.id, option)
+			.then ( () => this.props.fetchPost(this.props.post.post.id))
+		
+	}
+
 	render() {
 		const { post } = this.props.post
 
@@ -24,6 +34,7 @@ class PostDetails extends Component {
 						<h6 className="card-subtitle text-muted">
 							{post.voteScore} points by {post.author} | {readableDate(post.timestamp)}
 						</h6>
+						<Vote onOrderChange={this.onOrderChange}/>
 						<p className="card-text">
 							{post.body}
 						</p>
@@ -42,4 +53,4 @@ const mapStateToProps = ({ post }) => ({
 	post
 })
 
-export default connect(mapStateToProps, { fetchPost }) (PostDetails)
+export default connect(mapStateToProps, { fetchPost, postVote }) (PostDetails)

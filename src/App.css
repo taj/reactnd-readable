@@ -1,7 +1,9 @@
-.posts-list {
+.posts-list,
+.post-details {
     position: relative;
 }
-.posts-list .btn-posts-order {
+.posts-list .btn-posts-order,
+.post-details .btn-voting {
     position: absolute;
     top: 4rem;
     right: 2rem;
