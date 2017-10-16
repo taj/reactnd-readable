@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import CommentItem from './CommentItem'
+import AddComment from './AddComment'
+import { fetchComments, commentVote, addComment } from '../actions/comments'
 import { connect} from 'react-redux'
-import { fetchComments, commentVote } from '../actions/comments'
+import uuid from 'uuid'
 
 class CommentsList extends Component {
 	componentDidMount() {
@@ -29,6 +31,16 @@ class CommentsList extends Component {
 		) : false
 	}
 
+	postComment = (comment) => {
+		const postId = this.getPostId()
+		this.props.addComment({
+			...comment,
+			id: uuid(),
+			parentId: postId,
+			timestamp: new Date().getTime()
+		}).then( () => this.props.fetchComments(postId))
+	}
+
 	render() {
 		const { comments } = this.props.comments
 		const sortedComments = this.sortComments( comments );
@@ -40,6 +52,7 @@ class CommentsList extends Component {
 						<CommentItem key={comment.id} comment={comment} onVote={this.onVote}/>
 					))
 				)}
+				<AddComment postComment={this.postComment}/>
 			</div>
 		)
 	}
@@ -49,4 +62,4 @@ const mapStateToProps = ({ comments }) => ({
 	comments
 })
 
-export default connect(mapStateToProps, { fetchComments, commentVote }) (CommentsList)
+export default connect(mapStateToProps, { fetchComments, commentVote, addComment }) (CommentsList)

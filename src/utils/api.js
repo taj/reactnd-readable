@@ -25,10 +25,18 @@ export function fetchComments(postId) {
 export function vote(id, type, option) {
 	const data = { id: id, option: option }
 	return fetch (`${apiEnd}/${type}/${id}/`, {
-		method: "POST",
+		method: 'POST',
 		headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'whatever-you-want' },
 		body: JSON.stringify(data)
 	})
 	.then((res) => res.json())
-	.then(res => res)
+}
+
+export function postComment(comment) {
+	return fetch (`${apiEnd}/comments/`, {
+		method: 'POST',
+		headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'whatever-you-want' },
+		body: JSON.stringify(comment)
+	})
+	.then((res) => res.json())
 }
