@@ -4,13 +4,13 @@ class Vote extends Component {
 	constructor(props) {
 		super(props)
 
-		this.state = { onPostVote: this.props.onPostVote }
+		this.state = { onVote: this.props.onVote }
 
 		this.handleVote = this.handleVote.bind(this)
 	}
 
 	handleVote = (option) => {
-		this.props.onPostVote(option)
+		this.props.onVote(option)
 	}
 
 	render() {

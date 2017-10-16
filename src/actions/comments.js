@@ -1,6 +1,15 @@
 import * as ReadableAPI from '../utils/api'
 
 export const GET_COMMENTS = 'GET_COMMENTS'
+export const VOTE_COMMENT = 'VOTE_COMMENT'
+
+export const voteComment = (id, score) => {
+	return {
+		type: VOTE_COMMENT,
+		id,
+		score
+	}
+}
 
 export const fetchComments = (postId) => dispatch => (
 	ReadableAPI
@@ -14,3 +23,9 @@ export const getComments = comments => {
 		comments
 	}
 }
+
+export const commentVote = (commentId, option) => dispatch => (
+	ReadableAPI
+		.vote(commentId, 'comments', option)
+		.then(res => dispatch(voteComment(commentId, res.voteScore)))
+)

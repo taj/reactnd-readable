@@ -1,18 +1,38 @@
 import React, { Component } from 'react'
 import { readableDate } from '../utils/helpers'
+import Vote from './Vote'
 
 class CommentItem extends Component {
+	constructor(props) {
+		super(props)
+
+		this.onVote = this.onVote.bind(this)
+	}
+
+	onVote (option) {
+		this.props.onVote(
+			this.props.comment.id,
+			option
+		)
+	}
+
 	render() {
 		const { comment } = this.props
 		return (
-			<div className='mt-2'>
-				<h6 className="card-title">{comment.body}</h6>
-				<h6 className="card-subtitle text-muted">
-					{comment.voteScore} points by {comment.author} | {readableDate(comment.timestamp)}
-				</h6>
+			<div className='comment-item mt-2'>
+				{comment && (
+					<div>
+						<h6 className="card-title">{comment.body}</h6>
+						<h6 className="card-subtitle text-muted">
+							{comment.voteScore} points by {comment.author} | {readableDate(comment.timestamp)}
+						</h6>
+						<Vote onVote={this.onVote}/>
+					</div>
+				)}
 			</div>
 		)
 	}
 }
+
 
 export default CommentItem

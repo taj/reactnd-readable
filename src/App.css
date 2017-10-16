@@ -1,10 +1,16 @@
 .posts-list,
-.post-details {
-    position: relative;
+.post-details,
+.comment-item {
+	position: relative;
 }
 .posts-list .btn-posts-order,
-.post-details .btn-voting {
-    position: absolute;
-    top: 4rem;
-    right: 2rem;
+.post-details .btn-voting  {
+	position: absolute;
+	top: 4rem;
+	right: 2rem;
+}
+
+.comment-item .btn-voting {
+	top: 0;
+	right: 0;
 }
