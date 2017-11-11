@@ -3,6 +3,7 @@ import * as ReadableAPI from '../utils/api'
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const GET_COMMENT = 'GET_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
 
 export const getComments = comments => {
 	return {
@@ -26,6 +27,13 @@ export const getComment = (comment) => {
 	}
 }
 
+export const editComment = (comment) => {
+	return {
+		type: EDIT_COMMENT,
+		comment
+	}
+}
+
 export const fetchComments = (postId) => dispatch => (
 	ReadableAPI
 		.fetchComments(postId)
@@ -41,5 +49,11 @@ export const commentVote = (commentId, option) => dispatch => (
 export const addComment = (comment) => dispatch => (
 	ReadableAPI
 		.postComment(comment)
+		.then(res => dispatch(getComment(res)))
+)
+
+export const updateComment = (comment) => dispatch => (
+	ReadableAPI
+		.putComment(comment)
 		.then(res => dispatch(getComment(res)))
 )

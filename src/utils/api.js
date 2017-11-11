@@ -40,3 +40,13 @@ export function postComment(comment) {
 	})
 	.then((res) => res.json())
 }
+
+export function putComment(comment) {
+	const commentId = comment.id
+	return fetch (`${apiEnd}/comments/${commentId}`, {
+		method: 'PUT',
+		headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'whatever-you-want' },
+		body: JSON.stringify(comment)
+	})
+	.then((res) => res.json())
+}
