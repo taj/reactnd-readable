@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCategories } from '../actions'
+import { loadCategories } from '../actions'
+import * as API from '../utils/api'
 
 class CategoriesList extends Component {
   componentDidMount() {
@@ -26,8 +27,21 @@ class CategoriesList extends Component {
   }
 }
 
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchCategories: () => (
+      API
+        .fetchCategories()
+        .then(categories => dispatch(loadCategories(categories)))
+    )
+  }
+}
+
 const mapStateToProps = ({ categories }) => ({
   categories
 })
 
-export default connect(mapStateToProps, { fetchCategories })(CategoriesList)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoriesList)
