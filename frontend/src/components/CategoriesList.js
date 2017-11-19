@@ -10,6 +10,7 @@ class CategoriesList extends Component {
 
   render() {
     const { categories } = this.props.categories
+
     return (
       <div className='jumbotron category-list'>
         <h1>Categories</h1>

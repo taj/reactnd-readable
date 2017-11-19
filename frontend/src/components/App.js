@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import CategoriesList from './CategoriesList'
+import PostsList from './PostsList'
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
         <Header />
         <div className="container">
           <CategoriesList />
+          <PostsList />
         </div>
       </div>
     );
