@@ -6,7 +6,11 @@ import * as API from '../utils/api'
 
 class PostsList extends Component {
   componentDidMount() {
-    this.props.fetchPosts()
+    const filter = this.props.match !== undefined ? (
+      this.props.match.params.category || false
+    ) : false
+
+    this.props.fetchPosts(filter)
   }
 
   render() {
@@ -16,8 +20,8 @@ class PostsList extends Component {
       <div>
         <div className='jumbotron posts-list'>
           <h1>All Posts</h1>
-          { posts !== undefined && posts.map( post => (
-              <PostItem key={post.id} post={post}/>
+          {posts !== undefined && posts.map(post => (
+            <PostItem key={post.id} post={post} />
           ))}
         </div>
       </div>
@@ -25,11 +29,11 @@ class PostsList extends Component {
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    fetchPosts: () => (
+    fetchPosts: (filter) => (
       API
-        .fetchPosts()
+        .fetchPosts(filter)
         .then(posts => dispatch(loadPosts(posts)))
     )
   }

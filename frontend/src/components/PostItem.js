@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import { readableDate } from '../utils/helpers'
 
@@ -14,7 +15,7 @@ class PostItem extends Component {
           <h6 className="card-subtitle text-muted">
             {post.voteScore} points by {post.author} | {readableDate(post.timestamp)}
           </h6>
-          {post.category}
+          <Link to={`/category/${post.category}`} className="card-link">{post.category}</Link>
         </div>
       </div>
     )

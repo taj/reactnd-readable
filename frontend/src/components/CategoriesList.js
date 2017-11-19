@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loadCategories } from '../actions'
 import * as API from '../utils/api'
@@ -18,7 +19,10 @@ class CategoriesList extends Component {
           <ul className="list-group">
             {categories.map(category => (
               <li key={category.path} className="list-group-item">
-                {category.name}
+                <Link
+                  className="nav-link"
+                  to={`/category/${category.path}`}
+                >{category.name}</Link>
               </li>
             ))}
           </ul>
@@ -28,7 +32,7 @@ class CategoriesList extends Component {
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     fetchCategories: () => (
       API
