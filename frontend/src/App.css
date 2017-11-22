@@ -21,6 +21,12 @@
   right: 2rem;
 }
 
+.posts-sorter {
+  position: absolute;
+  top: 4rem;
+  right: 2rem;
+}
+
 .comment-item .btn-editing {
   top: 0;
   right: 0;
