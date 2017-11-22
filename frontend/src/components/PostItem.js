@@ -10,7 +10,7 @@ class PostItem extends Component {
       <div className="card mb-2">
         <div className="card-body">
           <h4 className="card-title">
-          {post.title}
+            <Link to={`/post/${post.id}`}>{post.title}</Link>
           </h4>
           <h6 className="card-subtitle text-muted">
             {post.voteScore} points by {post.author} | {readableDate(post.timestamp)}
