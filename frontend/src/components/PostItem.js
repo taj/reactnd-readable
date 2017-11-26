@@ -6,6 +6,7 @@ import { readableDate } from '../utils/helpers'
 class PostItem extends Component {
   render() {
     const { post } = this.props
+
     return (
       <div className="card mb-2">
         <div className="card-body">

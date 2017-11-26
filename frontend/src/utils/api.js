@@ -22,3 +22,13 @@ export function fetchComments(postId) {
   return fetch(`${apiEnd}/posts/${postId}/comments`, { headers: { 'Authorization': 'whatever-you-want' } })
     .then((res) => res.json())
 }
+
+export function vote(id, type, option) {
+  const data = { id: id, option: option }
+  return fetch(`${apiEnd}/${type}/${id}/`, {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'whatever-you-want' },
+    body: JSON.stringify(data)
+  })
+    .then((res) => res.json())
+}

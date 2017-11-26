@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import CommentsList from './CommentsList'
+import Vote from './Vote'
 
 import { loadPost, loadComments } from '../actions'
 
@@ -17,6 +18,12 @@ class PostDetails extends Component {
 
     this.props.fetchPost(postId)
     this.props.fetchComments(postId)
+
+    this.onVote = this.onVote.bind(this)
+  }
+
+  onVote(id, type, option) {
+    this.props.vote(id, type, option)
   }
 
   render() {
@@ -26,7 +33,7 @@ class PostDetails extends Component {
 
     return (
       <div>
-        <div className='jumbotron category-list'>
+        <div className='jumbotron post-details'>
           {post && (
             <div>
               <h4 className="card-title">{post.title}</h4>
@@ -37,11 +44,12 @@ class PostDetails extends Component {
                 {post.body}
               </p>
               <Link to={`/category/${post.category}`} className="card-link">{post.category}</Link>
+              <Vote onVote={this.onVote} id={post.id} type={"posts"} />
             </div>
           )}
         </div>
         <CommentsList comments={postComments} />
-        <Link to="/">Go back home</Link>
+        <Link to="/">Go back to the Home page</Link>
       </div>
     )
   }
@@ -58,6 +66,11 @@ function mapDispatchToProps(dispatch) {
       API
         .fetchComments(postId)
         .then(comments => dispatch(loadComments(postId, comments)))
+    ),
+    vote: (id, type, option) => (
+      API
+        .vote(id, type, option)
+        .then(post => dispatch(loadPost(post)))
     )
   }
 }
