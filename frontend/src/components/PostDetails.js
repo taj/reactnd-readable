@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { loadPost } from '../actions'
+import CommentsList from './CommentsList'
+
+import { loadPost, loadComments } from '../actions'
 
 import * as API from '../utils/api'
 import { readableDate } from '../utils/helpers'
@@ -14,10 +16,13 @@ class PostDetails extends Component {
     ) : false
 
     this.props.fetchPost(postId)
+    this.props.fetchComments(postId)
   }
 
   render() {
-    const { post } = this.props.post
+    const { post } = this.props
+    const { comments } = this.props
+    const postComments = comments[post.id] || []
 
     return (
       <div>
@@ -35,6 +40,7 @@ class PostDetails extends Component {
             </div>
           )}
         </div>
+        <CommentsList comments={postComments} />
         <Link to="/">Go back home</Link>
       </div>
     )
@@ -47,12 +53,18 @@ function mapDispatchToProps(dispatch) {
       API
         .fetchPost(postId)
         .then(post => dispatch(loadPost(post)))
+    ),
+    fetchComments: (postId) => (
+      API
+        .fetchComments(postId)
+        .then(comments => dispatch(loadComments(postId, comments)))
     )
   }
 }
 
-const mapStateToProps = ({ post }) => ({
-  post
+const mapStateToProps = ({ post, comments }) => ({
+  post: post.post ? post.post : post,
+  comments
 })
 
 export default connect(
