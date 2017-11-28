@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loadPosts } from '../actions'
+import { loadPosts, reLoadPost } from '../actions'
 import PostItem from './PostItem'
 import PostsSorter from './PostsSorter'
 import * as API from '../utils/api'
@@ -34,6 +34,10 @@ class PostsList extends Component {
     }
   }
 
+  onVote = (id, type, option) => {
+    // console.log(id, type, option)
+    this.props.vote(id, type, option)
+  }
 
   onOrderChange = (sort) => {
     this.setState({ sort: sort })
@@ -42,7 +46,7 @@ class PostsList extends Component {
   render() {
     const { posts } = this.props.posts
     const { sort } = this.state
-    const sortedPosts = this.sortPosts( posts, sort )
+    const sortedPosts = this.sortPosts(posts, sort)
 
     return (
       <div>
@@ -50,7 +54,7 @@ class PostsList extends Component {
           <h1>All Posts</h1>
           <PostsSorter onOrderChange={this.onOrderChange} />
           {sortedPosts !== undefined && posts.map(post => (
-            <PostItem key={post.id} post={post} />
+            <PostItem key={post.id} post={post} onVote={this.onVote} />
           ))}
         </div>
       </div>
@@ -64,6 +68,11 @@ function mapDispatchToProps(dispatch) {
       API
         .fetchPosts(filter)
         .then(posts => dispatch(loadPosts(posts)))
+    ),
+    vote: (id, type, option) => (
+      API
+        .vote(id, type, option)
+        .then(post => dispatch(reLoadPost(post)))
     )
   }
 }

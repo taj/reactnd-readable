@@ -1,9 +1,21 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import Vote from './Vote'
+
 import { readableDate } from '../utils/helpers'
 
 class PostItem extends Component {
+  constructor(props) {
+    super(props)
+
+    this.onVote = this.onVote.bind(this)
+  }
+
+  onVote(id, type, option) {
+    this.props.onVote(id, type, option)
+  }
+
   render() {
     const { post } = this.props
 
@@ -17,6 +29,7 @@ class PostItem extends Component {
             {post.voteScore} points by {post.author} | {readableDate(post.timestamp)}
           </h6>
           <Link to={`/category/${post.category}`} className="card-link">{post.category}</Link>
+          <Vote onVote={this.onVote} id={post.id} type={"posts"} />
         </div>
       </div>
     )
