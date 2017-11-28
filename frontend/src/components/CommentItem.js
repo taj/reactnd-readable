@@ -1,7 +1,20 @@
 import React, { Component } from 'react'
 import { readableDate } from '../utils/helpers'
 
+import Vote from './Vote'
+
 class CommentItem extends Component {
+  constructor(props) {
+    super(props)
+
+    this.onVote = this.onVote.bind(this)
+  }
+
+  onVote(id, type, option) {
+    // console.log(id, type, option)
+    this.props.onVote(id, type, option)
+  }
+
   render() {
     const { comment } = this.props
 
@@ -13,6 +26,7 @@ class CommentItem extends Component {
             <h6 className="card-subtitle text-muted">
               {comment.voteScore} points by {comment.author} | {readableDate(comment.timestamp)}
             </h6>
+            <Vote onVote={this.onVote} id={comment.id} type={"comments"} />
           </div>
         )}
       </div>

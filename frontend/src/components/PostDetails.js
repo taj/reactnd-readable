@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import CommentsList from './CommentsList'
 import Vote from './Vote'
 
-import { loadPost, loadComments } from '../actions'
+import { loadPost, loadComments, reLoadComment } from '../actions'
 
 import * as API from '../utils/api'
 import { readableDate } from '../utils/helpers'
@@ -23,7 +23,11 @@ class PostDetails extends Component {
   }
 
   onVote(id, type, option) {
-    this.props.vote(id, type, option)
+    if (type === "posts") {
+      this.props.votePost(id, type, option)
+    } else {
+      this.props.voteComment(id, type, option)
+    }
   }
 
   render() {
@@ -48,7 +52,7 @@ class PostDetails extends Component {
             </div>
           )}
         </div>
-        <CommentsList comments={postComments} />
+        <CommentsList comments={postComments} onVote={this.onVote} />
         <Link to="/">Go back to the Home page</Link>
       </div>
     )
@@ -67,10 +71,15 @@ function mapDispatchToProps(dispatch) {
         .fetchComments(postId)
         .then(comments => dispatch(loadComments(postId, comments)))
     ),
-    vote: (id, type, option) => (
+    votePost: (id, type, option) => (
       API
         .vote(id, type, option)
         .then(post => dispatch(loadPost(post)))
+    ),
+    voteComment: (id, type, option) => (
+      API
+        .vote(id, type, option)
+        .then(comment => dispatch(reLoadComment(comment)))
     )
   }
 }

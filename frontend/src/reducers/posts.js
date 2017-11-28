@@ -5,7 +5,7 @@ import {
 
 const posts = (state = {}, action) => {
   const { posts, post } = action
-  console.log(action)
+
   switch (action.type) {
     case LOAD_POSTS:
       return {
