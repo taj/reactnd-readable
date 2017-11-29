@@ -5,6 +5,7 @@ import Header from './Header'
 import CategoriesList from './CategoriesList'
 import PostsList from './PostsList'
 import PostDetails from './PostDetails'
+import AddPost from './AddPost'
 
 class App extends Component {
   render() {
@@ -26,11 +27,18 @@ class App extends Component {
             </div>
           )} />
 
-          <Route exact path="/post/:postId" render={(props) => (
+          <Route exact path="/post/new" render={(props) => (
+            <div className="container">
+              <AddPost {...props} />
+            </div>
+          )} />
+
+          <Route exact path="/post/:postId/show" render={(props) => (
             <div className="container">
               <PostDetails {...props} />
             </div>
           )} />
+
 
         </div>
       </Router>

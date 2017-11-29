@@ -1,5 +1,6 @@
 export const LOAD_POSTS = 'LOAD_POSTS'
 export const RE_LOAD_POST = 'RE_LOAD_POST'
+export const ADD_POST = 'ADD_POST'
 
 export const loadPosts = posts => ({
   type: LOAD_POSTS,
@@ -8,5 +9,10 @@ export const loadPosts = posts => ({
 
 export const reLoadPost = post => ({
   type: RE_LOAD_POST,
+  post
+})
+
+export const addPost = post => ({
+  type: ADD_POST,
   post
 })

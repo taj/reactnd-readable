@@ -1,6 +1,7 @@
 import {
   LOAD_POSTS,
-  RE_LOAD_POST
+  RE_LOAD_POST,
+  ADD_POST
 } from '../actions'
 
 const posts = (state = {}, action) => {
@@ -20,6 +21,11 @@ const posts = (state = {}, action) => {
             return post
           else return p
         })
+      }
+    case ADD_POST:
+      return {
+        ...state,
+        posts: state.posts.concat(post)
       }
     default:
       return state
