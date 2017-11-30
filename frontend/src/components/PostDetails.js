@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import CommentsList from './CommentsList'
 import Vote from './Vote'
+import AddComment from './AddComment'
 
 import { loadPost, loadComments, reLoadComment } from '../actions'
 
@@ -53,6 +54,7 @@ class PostDetails extends Component {
           )}
         </div>
         <CommentsList comments={postComments} onVote={this.onVote} />
+        <AddComment  {...this.props} />
         <Link to="/">Go back to the Home page</Link>
       </div>
     )

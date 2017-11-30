@@ -1,11 +1,12 @@
 import {
   LOAD_COMMENTS,
-  RE_LOAD_COMMENT
+  RE_LOAD_COMMENT,
+  ADD_COMMENT
 } from '../actions'
 
 const comments = (state = {}, action) => {
   const { postId, comments, comment } = action
-
+  console.log(action)
   switch (action.type) {
     case LOAD_COMMENTS:
       return {
@@ -20,6 +21,11 @@ const comments = (state = {}, action) => {
             return comment
           else return c
         })
+      }
+    case ADD_COMMENT:
+      return {
+        ...state,
+        [comment.parentId]: state[comment.parentId].concat(comment)
       }
     default:
       return state
