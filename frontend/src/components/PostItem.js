@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import Vote from './Vote'
+import DeletePost from './DeletePost'
 
 import { readableDate } from '../utils/helpers'
 
@@ -10,10 +11,15 @@ class PostItem extends Component {
     super(props)
 
     this.onVote = this.onVote.bind(this)
+    this.onDelete = this.onDelete.bind(this)
   }
 
   onVote(id, type, option) {
     this.props.onVote(id, type, option)
+  }
+
+  onDelete(id) {
+    this.props.onDelete(id)
   }
 
   render() {
@@ -30,6 +36,7 @@ class PostItem extends Component {
           </h6>
           <Link to={`/category/${post.category}`} className="card-link">{post.category}</Link>
           <Vote onVote={this.onVote} id={post.id} type={"posts"} />
+          <DeletePost id={post.id} onDelete={this.onDelete} />
         </div>
       </div>
     )

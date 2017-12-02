@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loadPosts, reLoadPost } from '../actions'
+import { loadPosts, reLoadPost, deletePost } from '../actions'
 import PostItem from './PostItem'
 import PostsSorter from './PostsSorter'
 import * as API from '../utils/api'
@@ -35,8 +35,11 @@ class PostsList extends Component {
   }
 
   onVote = (id, type, option) => {
-    // console.log(id, type, option)
     this.props.vote(id, type, option)
+  }
+
+  onDelete = (id) => {
+    this.props.deletePost(id)
   }
 
   onOrderChange = (sort) => {
@@ -54,8 +57,12 @@ class PostsList extends Component {
           <h1>All Posts</h1>
           <PostsSorter onOrderChange={this.onOrderChange} />
           {sortedPosts !== undefined && posts.map(post => (
-            <PostItem key={post.id} post={post} onVote={this.onVote} />
+            <PostItem key={post.id} post={post} onVote={this.onVote} onDelete={this.onDelete} />
           ))}
+
+          {(sortedPosts === undefined || sortedPosts.length === 0) && (
+            <small className="form-text text-muted">No posts to show.</small>
+          )}
         </div>
       </div>
     )
@@ -73,6 +80,11 @@ function mapDispatchToProps(dispatch) {
       API
         .vote(id, type, option)
         .then(post => dispatch(reLoadPost(post)))
+    ),
+    deletePost: (id) => (
+      API
+        .deletePost(id)
+        .then(post => dispatch(deletePost(post)))
     )
   }
 }

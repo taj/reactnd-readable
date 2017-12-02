@@ -1,7 +1,8 @@
 import {
   LOAD_POSTS,
   RE_LOAD_POST,
-  ADD_POST
+  ADD_POST,
+  DELETE_POST
 } from '../actions'
 
 const posts = (state = {}, action) => {
@@ -25,7 +26,16 @@ const posts = (state = {}, action) => {
     case ADD_POST:
       return {
         ...state,
-        posts: state.posts.concat(post)
+        posts: state.posts !== undefined ?
+          state.posts.concat(post)
+          : [].concat(post)
+      }
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts !== undefined ?
+          state.posts.filter((p) => p.id !== post.id)
+          : []
       }
     default:
       return state

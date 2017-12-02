@@ -33,18 +33,17 @@ class AddComment extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log(this.state)
 
     this.props.createComment({
       ...this.state,
       id: uuid()
     })
-    .then(() => {
-      this.setState({
-        author: '',
-        body: ''
+      .then(() => {
+        this.setState({
+          author: '',
+          body: ''
+        })
       })
-    })
   }
 
   render() {

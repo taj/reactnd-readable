@@ -50,3 +50,11 @@ export function createComment(data) {
   })
     .then((res) => res.json())
 }
+
+export function deletePost(id) {
+  return fetch(`${apiEnd}/posts/${id}`, {
+    method: 'DELETE',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'whatever-you-want' },
+  })
+    .then((res) => res.json())
+}

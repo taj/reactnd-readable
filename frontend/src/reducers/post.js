@@ -1,5 +1,6 @@
 import { 
-  LOAD_POST
+  LOAD_POST,
+  DELETE_POST
 } from '../actions'
 
 const post = (state = {}, action) => {
@@ -10,6 +11,11 @@ const post = (state = {}, action) => {
       return {
         ...state,
         post
+      }
+    case DELETE_POST:
+      return {
+        ...state,
+        post: state.post.id === post.id ? {} : state.post
       }
     default:
       return state

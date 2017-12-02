@@ -11,7 +11,6 @@ class CommentItem extends Component {
   }
 
   onVote(id, type, option) {
-    // console.log(id, type, option)
     this.props.onVote(id, type, option)
   }
 
