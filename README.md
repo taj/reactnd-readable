@@ -12,8 +12,12 @@ To get started developing right away:
     - `node server`
 * In another terminal window, Install and start the frontend
     - `cd frontend`
+    - `npm install`
     - `npm start`
 
 ## API Server
 
 Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+
+## Note
+The aim of this project is to learn how to work with React and Redux therefore the css styling of the interfaces is not great and is not meant for mobile or tablet views.
