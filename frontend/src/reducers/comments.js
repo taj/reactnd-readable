@@ -7,7 +7,7 @@ import {
 
 const comments = (state = {}, action) => {
   const { postId, comments, comment } = action
-  console.log(action)
+
   switch (action.type) {
     case LOAD_COMMENTS:
       return {

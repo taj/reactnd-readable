@@ -47,7 +47,7 @@ class EditPost extends Component {
 
     this.props.fetchPost(postId)
       .then((post) => {
-        console.log(post)
+
         this.setState({
           id: post.post.id,
           title: post.post.title,

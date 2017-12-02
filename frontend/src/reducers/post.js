@@ -15,7 +15,9 @@ const post = (state = {}, action) => {
     case DELETE_POST:
       return {
         ...state,
-        post: state.post.id === post.id ? {} : state.post
+        post: state.post !== undefined ?
+                state.post.id === post.id ? {} : state.post
+                : {}
       }
     default:
       return state
