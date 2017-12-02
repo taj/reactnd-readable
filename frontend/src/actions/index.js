@@ -11,6 +11,6 @@ export {
   loadPost
 } from './post'
 export {
-  LOAD_COMMENTS, RE_LOAD_COMMENT, ADD_COMMENT,
-  loadComments, reLoadComment, addComment
+  LOAD_COMMENTS, RE_LOAD_COMMENT, ADD_COMMENT, DELETE_COMMENT,
+  loadComments, reLoadComment, addComment, deleteComment
 } from './comments'

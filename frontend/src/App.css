@@ -24,7 +24,12 @@
 }
 
 .comment-item .btn-editing {
-  right: 8rem;
+  right: 18rem;
+  top: 0;
+}
+
+.comment-item .btn-deleting {
+	right: 8rem;
   top: 0;
 }
 

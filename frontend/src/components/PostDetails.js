@@ -7,7 +7,7 @@ import Vote from './Vote'
 import AddComment from './AddComment'
 import DeletePost from './DeletePost'
 
-import { loadPost, loadComments, reLoadComment, deletePost } from '../actions'
+import { loadPost, loadComments, reLoadComment, deletePost, deleteComment } from '../actions'
 
 import * as API from '../utils/api'
 import { readableDate } from '../utils/helpers'
@@ -52,6 +52,10 @@ class PostDetails extends Component {
     this.props.updateComment(data)
   }
 
+  onCommentDelete = (id) => {
+    this.props.deleteComment(id)
+  }
+
   render() {
     const { post } = this.props
     const { comments } = this.props
@@ -85,8 +89,12 @@ class PostDetails extends Component {
                   <DeletePost id={post.id} onDelete={this.onDelete} />
                   <Link to={`/post/${post.id}/edit`} className="btn btn-editing btn-warning">Edit</Link>
                 </div>
-                <CommentsList comments={postComments} onVote={this.onVote} onCommentUpdate={this.onCommentUpdate} />
-                <AddComment  {...this.props} />
+                <CommentsList
+                  comments={postComments}
+                  onVote={this.onVote}
+                  onCommentUpdate={this.onCommentUpdate}
+                  onCommentDelete={this.onCommentDelete} />
+                <AddComment {...this.props} />
               </div>
             )}
 
@@ -135,6 +143,11 @@ function mapDispatchToProps(dispatch) {
       API
         .updateComment(data.id, data)
         .then(comment => dispatch(reLoadComment(comment)))
+    },
+    deleteComment: (id) => {
+      API
+        .deleteComment(id)
+        .then(comment => dispatch(deleteComment(comment)))
     }
   }
 }

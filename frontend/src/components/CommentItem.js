@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Modal from 'react-modal'
 
 import Vote from './Vote'
+import DeleteComment from './DeleteComment'
 
 import { readableDate } from '../utils/helpers'
 
@@ -18,6 +19,7 @@ class CommentItem extends Component {
 
     this.onVote = this.onVote.bind(this)
     this.onCommentUpdate = this.onCommentUpdate.bind(this)
+    this.onCommentDelete = this.onCommentDelete.bind(this)
 
     this.handleCommentBodyChange = this.handleCommentBodyChange.bind(this)
     this.handleCommentUpdate = this.handleCommentUpdate.bind(this)
@@ -27,13 +29,18 @@ class CommentItem extends Component {
     this.props.onVote(id, type, option)
   }
 
+  onCommentUpdate(data) {
+    this.props.onCommentUpdate(data)
+  }
+
+  onCommentDelete(id) {
+    this.props.onCommentDelete(id)
+  }
+
   handleCommentBodyChange(event) {
     this.setState({ commentBody: event.target.value })
   }
 
-  onCommentUpdate(data) {
-    this.props.onCommentUpdate(data)
-  }
 
   handleCommentUpdate(event) {
     event.preventDefault()
@@ -69,6 +76,7 @@ class CommentItem extends Component {
               {comment.voteScore} points by {comment.author} | {readableDate(comment.timestamp)}
             </h6>
             <Vote onVote={this.onVote} id={comment.id} type={"comments"} />
+            <DeleteComment onCommentDelete={this.onCommentDelete} id={comment.id} />
             <div className="btn btn-editing btn-warning" onClick={() => this.openCommentModal({ comment })}>Edit Comment</div>
 
             <Modal

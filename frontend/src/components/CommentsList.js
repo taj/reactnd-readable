@@ -8,6 +8,7 @@ class CommentsList extends Component {
 
     this.onVote = this.onVote.bind(this)
     this.onCommentUpdate = this.onCommentUpdate.bind(this)
+    this.onCommentDelete = this.onCommentDelete.bind(this)
   }
 
   onVote(id, type, option) {
@@ -18,6 +19,10 @@ class CommentsList extends Component {
     this.props.onCommentUpdate(data)
   }
 
+  onCommentDelete(data) {
+    this.props.onCommentDelete(data)
+  }
+
   render() {
     const comments = this.props.comments.sort((a, b) => a.voteScore < b.voteScore)
 
@@ -26,7 +31,12 @@ class CommentsList extends Component {
         <h5>Comments:</h5>
         {comments && (
           comments.map(comment => (
-            <CommentItem key={comment.id} comment={comment} onVote={this.onVote} onCommentUpdate={this.onCommentUpdate} />
+            <CommentItem
+              key={comment.id}
+              comment={comment}
+              onVote={this.onVote}
+              onCommentUpdate={this.onCommentUpdate}
+              onCommentDelete={this.onCommentDelete} />
           ))
         )}
       </div>

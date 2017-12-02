@@ -76,3 +76,11 @@ export function updateComment(id, data) {
   })
     .then((res) => res.json())
 }
+
+export function deleteComment(id) {
+  return fetch(`${apiEnd}/comments/${id}`, {
+    method: 'DELETE',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'whatever-you-want' },
+  })
+    .then((res) => res.json())
+}
