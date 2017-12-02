@@ -42,6 +42,15 @@ export function create(data) {
     .then((res) => res.json())
 }
 
+export function updatePost(id, data) {
+  return fetch(`${apiEnd}/posts/${id}/`, {
+    method: 'PUT',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'whatever-you-want' },
+    body: JSON.stringify(data)
+  })
+    .then((res) => res.json())
+}
+
 export function createComment(data) {
   return fetch(`${apiEnd}/comments`, {
     method: 'POST',

@@ -6,7 +6,8 @@
 .posts-list .btn-posts-order,
 .btn-voting,
 .btn-editing,
-.btn-deleting {
+.btn-deleting,
+.btn-editing {
   position: absolute;
   top: 4rem;
   right: 2rem;
@@ -15,6 +16,11 @@
 .posts-list .btn-deleting,
 .post-details .btn-deleting {
   right: 8rem;
+}
+
+.posts-list .btn-editing,
+.post-details .btn-editing {
+  right: 15rem;
 }
 
 .btn-editing .btn {

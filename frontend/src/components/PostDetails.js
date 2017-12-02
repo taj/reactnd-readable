@@ -20,6 +20,7 @@ class PostDetails extends Component {
       postDeleted: false
     }
   }
+
   componentDidMount() {
     const postId = this.props.match !== undefined ? (
       this.props.match.params.postId || false
@@ -51,8 +52,6 @@ class PostDetails extends Component {
     const { comments } = this.props
     const postComments = comments[post.id] || []
 
-    console.log(post)
-
     return (
       <div>
         {this.state.postDeleted && (
@@ -79,6 +78,7 @@ class PostDetails extends Component {
                   <Link to={`/category/${post.category}`} className="card-link">{post.category}</Link>
                   <Vote onVote={this.onVote} id={post.id} type={"posts"} />
                   <DeletePost id={post.id} onDelete={this.onDelete} />
+                  <Link to={`/post/${post.id}/edit`} className="btn btn-editing btn-warning">Edit</Link>
                 </div>
                 <CommentsList comments={postComments} onVote={this.onVote} />
                 <AddComment  {...this.props} />

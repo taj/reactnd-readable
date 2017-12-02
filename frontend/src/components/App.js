@@ -6,6 +6,7 @@ import CategoriesList from './CategoriesList'
 import PostsList from './PostsList'
 import PostDetails from './PostDetails'
 import AddPost from './AddPost'
+import EditPost from './EditPost'
 
 class App extends Component {
   render() {
@@ -39,7 +40,11 @@ class App extends Component {
             </div>
           )} />
 
-
+          <Route exact path="/post/:postId/edit" render={(props) => (
+            <div className="container">
+              <EditPost {...props} />
+            </div>
+          )} />
         </div>
       </Router>
     );

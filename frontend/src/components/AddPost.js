@@ -50,9 +50,9 @@ class AddPost extends Component {
       ...this.state,
       id: uuid()
     })
-    .then(() => {
-      this.setState({ showMessage: true })
-    })
+      .then(() => {
+        this.setState({ showMessage: true })
+      })
   }
 
   render() {
@@ -68,7 +68,7 @@ class AddPost extends Component {
         )}
         {!this.state.showMessage && (
           <div>
-            <h1> Add a new post </h1>
+            <h1>Add a new post </h1>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group row">
                 <label htmlFor="title" className="col-sm-2 col-form-label">Title:</label>
