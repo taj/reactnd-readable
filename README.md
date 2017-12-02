@@ -21,3 +21,4 @@ Information about the API server and how to use it can be found in its [README f
 
 ## Note
 The aim of this project is to learn how to work with React and Redux therefore the css styling of the interfaces is not great and is not meant for mobile or tablet views.
+Also no validation is being performed on Forms.
