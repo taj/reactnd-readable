@@ -17,8 +17,10 @@ class PostDetails extends Component {
     super(props)
 
     this.state = {
-      postDeleted: false
+      postDeleted: false,
     }
+
+    this.onVote = this.onVote.bind(this)
   }
 
   componentDidMount() {
@@ -29,7 +31,6 @@ class PostDetails extends Component {
     this.props.fetchPost(postId)
     this.props.fetchComments(postId)
 
-    this.onVote = this.onVote.bind(this)
   }
 
   onVote(id, type, option) {
@@ -45,6 +46,10 @@ class PostDetails extends Component {
       .then(() => {
         this.setState({ postDeleted: true })
       })
+  }
+
+  onCommentUpdate = (data) => {
+    this.props.updateComment(data)
   }
 
   render() {
@@ -80,7 +85,7 @@ class PostDetails extends Component {
                   <DeletePost id={post.id} onDelete={this.onDelete} />
                   <Link to={`/post/${post.id}/edit`} className="btn btn-editing btn-warning">Edit</Link>
                 </div>
-                <CommentsList comments={postComments} onVote={this.onVote} />
+                <CommentsList comments={postComments} onVote={this.onVote} onCommentUpdate={this.onCommentUpdate} />
                 <AddComment  {...this.props} />
               </div>
             )}
@@ -125,7 +130,12 @@ function mapDispatchToProps(dispatch) {
       API
         .deletePost(id)
         .then(post => dispatch(deletePost(post)))
-    )
+    ),
+    updateComment: (data) => {
+      API
+        .updateComment(data.id, data)
+        .then(comment => dispatch(reLoadComment(comment)))
+    }
   }
 }
 

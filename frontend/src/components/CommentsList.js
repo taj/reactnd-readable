@@ -7,10 +7,15 @@ class CommentsList extends Component {
     super(props)
 
     this.onVote = this.onVote.bind(this)
+    this.onCommentUpdate = this.onCommentUpdate.bind(this)
   }
 
   onVote(id, type, option) {
     this.props.onVote(id, type, option)
+  }
+
+  onCommentUpdate(data) {
+    this.props.onCommentUpdate(data)
   }
 
   render() {
@@ -21,7 +26,7 @@ class CommentsList extends Component {
         <h5>Comments:</h5>
         {comments && (
           comments.map(comment => (
-            <CommentItem key={comment.id} comment={comment} onVote={this.onVote} />
+            <CommentItem key={comment.id} comment={comment} onVote={this.onVote} onCommentUpdate={this.onCommentUpdate} />
           ))
         )}
       </div>

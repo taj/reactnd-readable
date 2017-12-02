@@ -67,3 +67,12 @@ export function deletePost(id) {
   })
     .then((res) => res.json())
 }
+
+export function updateComment(id, data) {
+  return fetch(`${apiEnd}/comments/${id}`, {
+    method: 'PUT',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': 'whatever-you-want' },
+    body: JSON.stringify(data)
+  })
+    .then((res) => res.json())
+}
