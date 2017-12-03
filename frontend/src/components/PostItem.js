@@ -32,7 +32,7 @@ class PostItem extends Component {
             <Link to={`/post/${post.id}/show`}>{post.title}</Link>
           </h4>
           <h6 className="card-subtitle text-muted">
-            {post.voteScore} points by {post.author} | {readableDate(post.timestamp)}
+            {post.voteScore} points by {post.author} | {readableDate(post.timestamp)} | {post.commentCount} comment(s)
           </h6>
           <Link to={`/category/${post.category}`} className="card-link">{post.category}</Link>
           <Vote onVote={this.onVote} id={post.id} type={"posts"} />
