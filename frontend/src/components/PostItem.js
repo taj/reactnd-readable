@@ -29,15 +29,15 @@ class PostItem extends Component {
       <div className="card mb-2">
         <div className="card-body">
           <h4 className="card-title">
-            <Link to={`/post/${post.id}`}>{post.title}</Link>
+            <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
           </h4>
           <h6 className="card-subtitle text-muted">
             {post.voteScore} points by {post.author} | {readableDate(post.timestamp)} | {post.commentCount} comment(s)
           </h6>
-          <Link to={`/category/${post.category}`} className="card-link">{post.category}</Link>
+          <Link to={`/${post.category}`} className="card-link">{post.category}</Link>
           <Vote onVote={this.onVote} id={post.id} type={"posts"} />
           <DeletePost id={post.id} onDelete={this.onDelete} />
-          <Link to={`/post/${post.id}/edit`} className="btn btn-editing btn-warning">Edit</Link>
+          <Link to={`/${post.category}/${post.id}/edit`} className="btn btn-editing btn-warning">Edit</Link>
         </div>
       </div>
     )

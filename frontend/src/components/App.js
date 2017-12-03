@@ -22,7 +22,7 @@ class App extends Component {
             </div>
           )} />
 
-          <Route exact path="/category/:category" render={(props) => (
+          <Route exact path="/:category" render={(props) => (
             <div className="container">
               <PostsList {...props} />
             </div>
@@ -34,13 +34,13 @@ class App extends Component {
             </div>
           )} />
 
-          <Route exact path="/post/:postId" render={(props) => (
+          <Route exact path="/:postCategory/:postId" render={(props) => (
             <div className="container">
               <PostDetails {...props} />
             </div>
           )} />
 
-          <Route exact path="/post/:postId/edit" render={(props) => (
+          <Route exact path="/:postCategory/:postId/edit" render={(props) => (
             <div className="container">
               <EditPost {...props} />
             </div>

@@ -21,7 +21,7 @@ class CategoriesList extends Component {
               <li key={category.path} className="list-group-item">
                 <Link
                   className="nav-link"
-                  to={`/category/${category.path}`}
+                  to={`/${category.path}`}
                 >{category.name}</Link>
               </li>
             ))}

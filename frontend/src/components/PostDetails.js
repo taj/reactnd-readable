@@ -84,7 +84,7 @@ class PostDetails extends Component {
                   <p className="card-text">
                     {post.body}
                   </p>
-                  <Link to={`/category/${post.category}`} className="card-link">{post.category}</Link>
+                  <Link to={`/${post.category}`} className="card-link">{post.category}</Link>
                   <Vote onVote={this.onVote} id={post.id} type={"posts"} />
                   <DeletePost id={post.id} onDelete={this.onDelete} />
                   <Link to={`/post/${post.id}/edit`} className="btn btn-editing btn-warning">Edit</Link>

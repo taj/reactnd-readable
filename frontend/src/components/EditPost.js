@@ -13,7 +13,8 @@ class EditPost extends Component {
     this.state = {
       postUpdated: false,
       title: '',
-      body: ''
+      body: '',
+      category: ''
     }
 
     this.handleTitleChange = this.handleTitleChange.bind(this)
@@ -51,7 +52,8 @@ class EditPost extends Component {
         this.setState({
           id: post.post.id,
           title: post.post.title,
-          body: post.post.body
+          body: post.post.body,
+          category: post.post.category
         })
       })
   }
@@ -64,7 +66,7 @@ class EditPost extends Component {
           {this.state.postUpdated && (
             <div className="alert alert-primary" role="alert">
               Post updated successfully!<br />
-              <Link to="/">Go back to the Home page</Link> or <Link to={`/post/${this.state.id}`}>go back to this post's details page</Link>
+              <Link to="/">Go back to the Home page</Link> or <Link to={`/${this.state.category}/${this.state.id}`}>go back to this post's details page</Link>
             </div>
           )}
 
