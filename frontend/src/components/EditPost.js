@@ -64,7 +64,7 @@ class EditPost extends Component {
           {this.state.postUpdated && (
             <div className="alert alert-primary" role="alert">
               Post updated successfully!<br />
-              <Link to="/">Go back to the Home page</Link> or <Link to={`/post/${this.state.id}/show`}>go back to this post's details page</Link>
+              <Link to="/">Go back to the Home page</Link> or <Link to={`/post/${this.state.id}`}>go back to this post's details page</Link>
             </div>
           )}
 

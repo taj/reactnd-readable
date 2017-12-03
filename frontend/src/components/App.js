@@ -34,7 +34,7 @@ class App extends Component {
             </div>
           )} />
 
-          <Route exact path="/post/:postId/show" render={(props) => (
+          <Route exact path="/post/:postId" render={(props) => (
             <div className="container">
               <PostDetails {...props} />
             </div>
