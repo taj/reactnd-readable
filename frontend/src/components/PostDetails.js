@@ -10,7 +10,7 @@ import DeletePost from './DeletePost'
 import { loadPost, loadComments, reLoadComment, deletePost, deleteComment } from '../actions'
 
 import * as API from '../utils/api'
-import { readableDate } from '../utils/helpers'
+import { readableDate, isEmptyObject } from '../utils/helpers'
 
 class PostDetails extends Component {
   constructor(props) {
@@ -60,7 +60,7 @@ class PostDetails extends Component {
     const { post } = this.props
     const { comments } = this.props
     const postComments = comments[post.id] || []
-
+    console.log(isEmptyObject(post))
     return (
       <div>
         {this.state.postDeleted && (
@@ -74,7 +74,7 @@ class PostDetails extends Component {
 
         {this.state.postDeleted === false && (
           <div>
-            {(post && post.error === undefined) && (
+            {(post && post.error === undefined && !isEmptyObject(post)) && (
               <div>
                 <div className='jumbotron post-details'>
                   <h4 className="card-title">{post.title}</h4>
@@ -98,7 +98,7 @@ class PostDetails extends Component {
               </div>
             )}
 
-            {(post && post.error === "There was an error.") && (
+            {(post && (post.error === "There was an error." ||  isEmptyObject(post))) && (
               <div className='jumbotron post-details'>
                 Post not found
                 </div>
